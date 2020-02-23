@@ -1,0 +1,188 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[russian]{babel} 
+\usepackage{amsmath} 
+\usepackage{hyperref} 
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tipa}
+
+\title{Домашнее задание по АиСД №1}
+\date{2019-09-08}
+\author{Эмиль Гарипов M3138}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\maketitle
+\newpage
+\pagenumbering{arabic}
+
+\section*{Задача №1}
+Докажите по определению: $ \frac{n^{3}}{6} - 7n^{2} = \Omega(n^{3}) $ 
+\\\\
+\textbf{Доказательство} :
+\\\\
+По определению $\Omega :$ $$\ f(n) = \Omega(g(n)), \  \text{если} \ \exists \ c > 0, N \in \mathbb{N} : \forall \ n > N : f(n) \geq c \cdot g(n)$$.
+\\
+Найдем константу $c$, удовлетворяющую определению $\Omega$.
+Для такой константы $c$ верно следующее неравенство :
+\begin{equation}
+f(n) \geq c \cdot g(n) \quad (\text{для }n > N)
+\end{equation}
+Подставим $f(n) \ $ и \ $g(n)$ из условия и преобразуем неравенство.
+$$ \frac{n^{3}}{6} - 7n^{2} \geq c \cdot (n ^ {3})$$
+$$ n^{3} - 42n ^ {2} \geq 6cn^{3}$$
+$$ n^{2}((1 - 6c)n - 42) \geq 0 $$
+Функция $f(n)$ определена на множестве натуральных чисел $\mathbb{N}$, следовательно $n^{2} > 0$. Тогда разделим обе части неравенства на $n^{2}$ и раскроем скобки.
+$$ n - 6cn - 42 \geq 0$$
+$$ n - 6cn \geq 42 $$
+Из неравенства видно, что значение $c$, равное, например, $\frac{1}{12}$, удовлетворяет условию (1) для заданных $f(n)$ и $g(n)$ для $n \geq 84$, ч.т.д.
+
+\section*{Задача №2}
+Упорядочите функции так, чтобы, если $f(n)$ стоит раньше $g(n)$, то $f(n) = \mathcal{O}(g(n))$.
+\\
+\textbf{Порядок функций}:
+\begin{multicols}{5}
+\begin{enumerate}
+\item{$1$}
+\item{$n^{\frac{1}{\log n}}$}
+\item{$\frac{3}{2}^2$}
+\item{$\log{\log{n}}$}
+\item{$\sqrt{log \ n}$}
+\item{$(\sqrt{2})^{\log{n}}$}
+\item{$\log^{2}{n}$}
+\item{$n$}
+\item{$2^{\log{n}}$}
+\item{$n\log n$}
+\item{$\log{n!}$}
+\item{$n^{2}$}
+\item{$4^{\log{n}}$}
+\item{$n^{3}$}
+\item{$\log{n}!$}
+\item{$n^{\log{\log{n}}}$}
+\item{$(\log{n})^{\log{n}}$}
+\item{$n \cdot 2^{n}$}
+\item{$e^{n}$}
+\item{$n!$}
+\item{$(n + 1)!$}
+\item{$2^{2^{n}}$}
+\item{$2^{2^{n + 1}}$}
+\end{enumerate}
+\end{multicols}
+\section*{Задача №3}
+Докажите или опровергните, что $\log(n!) =\Theta(n\log n).$
+\
+\\
+\textbf{Доказательство} :
+Предположим, что $\log(n!) =\Theta(n\log n).$ Тогда по определению $\Theta$ : $$\exists \  c_1, c_2 > 0, N \in \mathbb{N} : \forall n \geq N : c_1 \cdot n \log n  \leq \log(n!) \leq c_2 \cdot n \log n$$ 
+Найдем такие константы $c_1$, $c_2$ и $N$. 
+\subsection*{1. $\Omega$ (Нижняя граница)}
+Рассмотрим первое неравенство и преобразуем его:
+$$c_1 \cdot n \log n  \leq \log(n!)$$
+Возведем двойку в степени, равные левой и правой части неравенства. Заметим,что полученное неравенство равносильно исходному.
+$$(2^{\log n})^{c_1 \cdot n} \leq 2^{\log(n!)}$$
+$$n^{c_1 \cdot n} \leq n!$$
+$$\underbrace{n^{c_1} \cdot \ldots \cdot n^{c_1}}_{n} \leq \underbrace{1 \cdot 2 \cdot \ldots \cdot (n - 1) \cdot  n}_{n}$$
+Возьмем,к примеру, $c_1$ равное $\frac{1}{2}$ и рассмотрим два случая, первый для всех $n$ кратных двум, второй - для $n$ не кратных двум.
+\subsection*{1.1 $n$ - четно}
+\begin{equation}
+\underbrace{n^{\frac{1}{2}} \cdot \ldots \cdot n^{\frac{1}{2}}}_{n} \leq \underbrace{1 \cdot 2 \cdot \ldots \cdot (n - 1) \cdot n}_{n}
+\end{equation}
+$$\underbrace{n \cdot \ldots \cdot n}_{n/2} \leq \underbrace{1 \cdot 2 \cdot \ldots \cdot (n - 1) \cdot n}_{n}$$
+Справа разобьем множители на пары вида $(i, n - i + 1)$ и сравним произведение каждой такой пары c $n$. Понятно, что таким образом мы сравним значения левой и правой частей.
+$$\underbrace{n \cdot \ldots \cdot n}_{n/2} \leq \prod_{i=1}^{\frac{n}{2}}i \cdot (n - i + 1)$$
+Докажем, что $n \leq i \cdot (n - i + 1) $ :
+$$n \leq i \cdot n - i^{2} + i$$
+$$n \cdot (i - 1) - i \cdot (i - 1) \geq 0$$
+$$(n - 1)(i - 1) \geq 0$$
+Множители $n - 1$ и $i - 1$ всегда положительны, а значит неравенство (2) верно при $c_1$, равном $\frac{1}{2}$ и четном натуральном $n$.
+
+\subsection*{1.2 $n$ - нечетно}
+Этот случай почти аналогичен случаю при четном $n$. При нечетном $n$ слева будет дополнительный множитель $n^{\frac{1}{2}}$ а справа у числа $\frac{(n + 1)}{2}$ не будет пары. Тогда осталось сравнить $n^{\frac{1}{2}}$ и $\frac{(n + 1)}{2}$:
+$$\sqrt(n) \leq \frac{(n + 1)}{2}$$
+$$n \leq \frac{(n + 1)^2}{4}$$
+Видно,что это неравенство всегда верно при натуральных $n$. Таким образом доказано неравенство для всех $n$.
+\subsection*{2. $\mathcal{O}$ (Верхняя граница)}
+Таким же образом преобразуем второе неравенсто:
+$$\log(n!) \leq c_2 \cdot n \log n$$
+$$\dots$$
+$$\underbrace{1 \cdot 2 \cdot \ldots \cdot (n - 1) \cdot  n}_{n} \leq \underbrace{n^{c_2} \cdot \ldots \cdot n^{c_2}}_{n}$$
+Очевидно, что для любого $c_2 > 1$ неравенство верно для любых натуральных $n$. 
+\\\\
+Итого: $\log(n!) =\Theta(n\log n).$
+\section*{Задача №4}
+Решите рекурренту: \ найдите верхнюю и нижнюю границы \ ($\mathcal{O}$ и  $\Omega$), докажите по индукции. 
+$T(n) = 2T(\frac{n}{2}) + \frac{n}{\log{n}} $
+\\\\
+\textbf{Решение} : 
+Сначала найдем верхнюю границу.Предположим, $T(n) = \mathcal{O}$$(n\log{n})$ и докажем по индукции.
+\\
+ $T(n) = \mathcal{O}$$(n\log{n})$, 
+ если $\exists \ c > 0, N \in \mathbb{N} : \forall \ n > N : f(n) \leq c \cdot g(n)$ по определению $\mathcal{O}$.
+\\
+\textbf{База индукции} : $T(1) = 1$
+\\
+\textbf{Переход} : Докажем предположение для $n$ ,считая что для всех меньших значений оно верно. Тогда по нашему предположению : 
+$$T(n) = 2T(\frac{n}{2}) + \frac{n}{\log{n}} \leq 2c \cdot \frac{n}{2}\log{\frac{n}{2}}+ \frac{n}{\log n}$$
+$$T(n) \leq cn \log{\frac{n}{2}} + \frac{n}{\log n}$$
+Если $cn \log{\frac{n}{2}} + \frac{n}{\log n} \leq cn \log{n}$, то индукционное предположение доказано, убедимся в верности этого неравенства.
+$$cn \log{\frac{n}{2}} + \frac{n}{\log n}\leq cn \log{n}$$
+$$\frac{n}{\log n}\leq cn(\log n - \log n + 1) $$
+$$\frac{n}{\log n} \leq cn$$
+$$\frac{1}{\log n} \leq c$$
+$$ 1 \leq \log n \cdot c$$
+Полученное неравенство верно при $c$ равном,например $2$, и $n$, на которых определена функция $T$. Следовательно наше предположение тоже, так как найдено $c$ и $n$, удовлетворяющее определению.
+\\\\
+
+
+
+Аналогичным образом найдем нижнюю границу.
+Предположим, $T(n) = \Omega$$(n)$ и докажем по индукции.
+\\
+$T(n) = \Omega(n)$, 
+если $\exists \ c > 0, n \in \mathbb{N} : \forall \ n > N : f(n) \geq c \cdot g(n)$ по определению $\mathcal{O}$.
+\\
+\textbf{База индукции} : $T(1) = 1$
+\\
+\textbf{Переход} : Докажем предположение для $n$ ,считая что для всех меньших значений оно верно. Тогда по нашему предположению : 
+$$T(n) = 2T(\frac{n}{2}) + \frac{n}{\log{n}} \geq 2c \cdot \frac{n}{2} \cdot \log{\frac{n}{2}} + \frac{n}{\log{n}}$$
+$$T(n) \geq cn\cdot \log{\frac{n}{2}} + \frac{n}{\log{n}}$$
+Если неравенство $cn \cdot  \log{\frac{n}{2}} + \frac{n}{\log{n}} \geq cn \cdot $ верно, то индукционное предположение доказано, убедимся в верности этого неравенства.
+$$cn(\log{\frac{n}{2}} - 1) + \frac{n}{\log{n}} \geq 0$$
+$$cn(\log{n} - 2) + \frac{n}{\log{n}} \geq 0$$ 
+Таким образом получаем,что при любом $c \geq 1$ и любом $n \geq 4$ неравенство обращается в верное, значит верно наше предположение.
+\\\\
+Итак, $T(n) = \mathcal{O}(n\log{n})$ и $T(n) = \Omega(n)$ 
+\section*{Задача №5}
+Оцените время работы обоих алгоритмов, если считать, что их вызывают от двух чисел длины $n$.
+\subsection*{Первый алгоритм}
+Запишем рекуррентное соотношение для рекурсивного алгоритма:\begin{enumerate}
+\item Функции,работающие за линейное время от длины аргумеента вызываются 8 раз.
+\item Функция multiply вызывает сама себя 4 раза, передавая аргументы с длиной,в два раза меньшей длины переданного ей аргумента.
+\end{enumerate}
+Запишем рекуррентное соотношение:
+$$T(n) = 8 \cdot n + 4 \cdot T(\frac{n}{2})$$
+Решим рекурренту, используя Мастер-теорему:
+\begin{itemize}
+\item $a$ = 4
+\item $b$ = 2
+\item $c$ = 1 \quad (т.к $8 \cdot n = \mathcal{O}(n)$)
+\end{itemize}
+Получаем, что
+$c < \log_b{a} $, а значит $T(n) = \mathcal{O}(n^{\log_b{a}}) = \mathcal{O}(n^{2}).$
+\\
+\subsection*{Второй алгоритм}
+Имеем:
+$$T(n) = 8 \cdot n + 3 \cdot T(\frac{n}{2})$$
+Так же решим рекурренту при помощи Мастер-теоремы:
+\begin{itemize}
+	\item $a$ = 3
+	\item $b$ = 2
+	\item $c$ = 1 \quad (т.к $8 \cdot n = \mathcal{O}(n)$)
+\end{itemize}
+Получаем, что
+$c < \log_b{a} $, а значит $T(n) = \mathcal{O}(n^{\log_b{a}}) = \mathcal{O}(n^{\log_2{3}}).$
+\end{document}
