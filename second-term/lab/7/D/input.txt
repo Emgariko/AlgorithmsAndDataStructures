@@ -1,0 +1,13 @@
+5
+1 2 3 4 5
+sum 2 5
+sum 1 5
+sum 1 4
+sum 2 4
+set 1 10
+set 2 3
+set 5 2
+sum 2 5
+sum 1 5
+sum 1 4
+sum 2 4

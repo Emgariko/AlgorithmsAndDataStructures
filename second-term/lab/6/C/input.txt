@@ -1,0 +1,13 @@
+put e f
+put u x
+put b k
+put d j
+put n k
+put c s
+next r
+prev d
+put u p
+put v s
+put v f
+delete d
+prev q
